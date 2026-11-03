@@ -6,10 +6,11 @@
   <title>Legal Nexus Advocates | Lawyers in Islamabad &amp; Rawalpindi</title>
   <meta name="description" content="Legal Nexus Advocates: advocates serving Islamabad and Rawalpindi in corporate, family, property, criminal, banking, tax, civil and service matters. Book a confidential consultation." />
   <meta name="theme-color" content="#0a0a0b" />
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="assets/favicon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="assets/favicon.png" />
   <meta property="og:title" content="Legal Nexus Advocates | Islamabad &amp; Rawalpindi" />
   <meta property="og:description" content="Clear legal advice and strong representation across the Twin Cities. Book a confidential consultation." />
-  <meta property="og:image" content="assets/logo-full.jpg" />
+  <meta property="og:image" content="assets/logo-full.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -20,7 +21,7 @@
     "@type": "LegalService",
     "name": "Legal Nexus Advocates",
     "url": "https://legalnexusadvocates.com",
-    "logo": "https://legalnexusadvocates.com/assets/logo.svg",
+    "logo": "https://legalnexusadvocates.com/assets/logo-full.png",
     "areaServed": [{"@type": "City", "name": "Islamabad"}, {"@type": "City", "name": "Rawalpindi"}],
     "sameAs": ["https://www.facebook.com/legalnexusadvocates/"]
   }
@@ -31,14 +32,7 @@
 
   <!-- Preloader: the nib writes the flourish once per visit -->
   <div class="preloader" aria-hidden="true">
-    <svg viewBox="400 300 340 300" class="preloader__mark">
-      <defs>
-        <mask id="ink-pre"><path class="ink-line" pathLength="1" d="%%CENTER%%" stroke="#fff" stroke-width="11" fill="none" stroke-linecap="round" /></mask>
-      </defs>
-      <path fill="#fff" d="%%FEATHER%%" class="pre-feather" />
-      <g class="pre-feather">%%NIB_PRE%%</g>
-      <path fill="#C9A35B" d="%%FLOURISH%%" mask="url(#ink-pre)" />
-    </svg>
+    <div class="preloader__mark mark-anim"><img class="mark-anim__pen" src="assets/mark-pen.webp" alt="" width="1200" height="1035" /><img class="mark-anim__ink" src="assets/mark-ink.webp" alt="" width="1200" height="1035" /></div>
   </div>
 
   <div class="progress" aria-hidden="true"><span></span></div>
@@ -48,7 +42,7 @@
   <header class="header" id="top">
     <div class="container header__inner">
       <a href="#top" class="brand" aria-label="Legal Nexus Advocates, home">
-        <img src="assets/logo-mark.svg" alt="" width="40" height="36" class="brand__mark" />
+        <img src="assets/mark-160.png" alt="" width="46" height="40" class="brand__mark" />
         <span class="brand__text"><b>Legal Nexus</b><small>Advocates</small></span>
       </a>
       <nav class="nav" aria-label="Main">
@@ -110,29 +104,11 @@
         <div class="hero__art" aria-hidden="true">
           <div class="hero__halo"></div>
           <div class="hero__orbit"><span></span><span></span><span></span></div>
-          <svg viewBox="390 290 360 320" class="quill">
-            <defs>
-              <mask id="ink-hero"><path class="ink-line" pathLength="1" d="%%CENTER%%" stroke="#fff" stroke-width="11" fill="none" stroke-linecap="round" /></mask>
-              <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#fff" stop-opacity="0" />
-                <stop offset=".5" stop-color="#fff" stop-opacity=".9" />
-                <stop offset="1" stop-color="#fff" stop-opacity="0" />
-              </linearGradient>
-              <linearGradient id="goldgrad" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0" stop-color="#a87f3c" />
-                <stop offset=".5" stop-color="#ecd29a" />
-                <stop offset="1" stop-color="#c9a35b" />
-              </linearGradient>
-              <clipPath id="feather-clip"><path d="%%FEATHER%%" /></clipPath>
-            </defs>
-            <g class="quill__pen">
-              <path class="quill__feather" fill="#fff" d="%%FEATHER%%" />
-              <g clip-path="url(#feather-clip)"><rect class="quill__sheen" x="300" y="280" width="90" height="400" fill="url(#sheen)" transform="rotate(25 460 450)" /></g>
-              %%NIB_HERO%%
-            </g>
-            <path class="quill__flourish" fill="url(#goldgrad)" d="%%FLOURISH%%" mask="url(#ink-hero)" />
-            <circle class="quill__drop" cx="463" cy="574" r="3" fill="#ecd29a" />
-          </svg>
+          <div class="quill mark-anim">
+            <div class="quill__pen"><img class="mark-anim__pen" src="assets/mark-pen.webp" alt="" width="1200" height="1035" fetchpriority="high" /><span class="quill__sheen"></span></div>
+            <img class="mark-anim__ink" src="assets/mark-ink.webp" alt="" width="1200" height="1035" />
+            <span class="quill__drop"></span>
+          </div>
           <div class="hero__wordmark">
             <span class="wm-main">LEGAL NEXUS</span>
             <span class="wm-sub">ADVOCATES</span>
@@ -416,7 +392,7 @@
   <footer class="footer">
     <div class="container footer__grid">
       <div class="footer__brand">
-        <img src="assets/logo-mark.svg" alt="" width="54" height="49" />
+        <img src="assets/mark-160.png" alt="" width="64" height="55" />
         <p class="footer__name">LEGAL NEXUS <span>ADVOCATES</span></p>
         <p class="footer__tag">Advocates serving Islamabad &amp; Rawalpindi.</p>
       </div>

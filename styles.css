@@ -52,12 +52,22 @@ p { margin: 0; }
   position: fixed; inset: 0; z-index: 200; display: grid; place-items: center;
   background: var(--ink); transition: opacity .6s var(--ease), visibility .6s;
 }
-.preloader__mark { width: min(180px, 40vw); }
-.preloader .pre-feather { opacity: 0; transform: translate(14px, -14px); animation: preFeather .6s var(--ease-out) .05s forwards; }
-.preloader .ink-line { stroke-dasharray: 1; stroke-dashoffset: 1; animation: ink 1s var(--ease) .45s forwards; }
+.preloader__mark { width: min(240px, 52vw); }
+.preloader .mark-anim__pen { opacity: 0; transform: translate(18px, -18px); animation: preFeather .6s var(--ease-out) .05s forwards; }
+.preloader .mark-anim__ink { animation: inkWipe 1s var(--ease) .45s forwards; }
 .preloader.is-done { opacity: 0; visibility: hidden; }
 @keyframes preFeather { to { opacity: 1; transform: none; } }
-@keyframes ink { to { stroke-dashoffset: 0; } }
+@keyframes inkWipe { to { -webkit-mask-position: 0 0; mask-position: 0 0; } }
+
+/* shared: the logo as two stacked layers (pen + gold ink) */
+.mark-anim { position: relative; }
+.mark-anim img { display: block; width: 100%; height: auto; }
+.mark-anim__ink {
+  position: absolute; inset: 0;
+  -webkit-mask-image: linear-gradient(90deg, #000 45%, transparent 55%); mask-image: linear-gradient(90deg, #000 45%, transparent 55%);
+  -webkit-mask-size: 220% 100%; mask-size: 220% 100%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  -webkit-mask-position: 100% 0; mask-position: 100% 0;
+}
 
 /* ---------- Scroll progress + cursor ---------- */
 .progress { position: fixed; inset: 0 0 auto; height: 2px; z-index: 120; pointer-events: none; }
@@ -118,7 +128,7 @@ p { margin: 0; }
 .header.is-hidden { transform: translateY(-100%); }
 .header__inner { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
 .brand { display: flex; align-items: center; gap: 10px; }
-.brand__mark { width: 40px; height: auto; transition: transform .6s var(--ease); }
+.brand__mark { width: 46px; height: auto; transition: transform .6s var(--ease); }
 .brand:hover .brand__mark { transform: rotate(-8deg) translateY(-2px); }
 .brand__text { display: flex; flex-direction: column; line-height: 1; }
 .brand__text b { font: 700 17px/1 var(--serif); letter-spacing: .06em; }
@@ -208,7 +218,7 @@ p { margin: 0; }
 .is-ready .check path { stroke-dashoffset: 0; }
 
 /* hero art: the logo, animated */
-.hero__art { position: relative; display: grid; place-items: center; aspect-ratio: 1 / 1; max-width: 560px; width: 100%; justify-self: center; perspective: 900px; }
+.hero__art { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; aspect-ratio: 1 / 1; max-width: 560px; width: 100%; justify-self: center; perspective: 900px; }
 .hero__halo { position: absolute; inset: 12%; border-radius: 50%; background: radial-gradient(circle, rgba(201, 163, 91, .22), transparent 65%); filter: blur(10px); animation: breathe 6s ease-in-out infinite; }
 @keyframes breathe { 50% { transform: scale(1.08); opacity: .75; } }
 .hero__orbit { position: absolute; inset: 4%; }
@@ -222,23 +232,29 @@ p { margin: 0; }
 .hero__orbit span:nth-child(1) { animation: spin 14s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-.quill { position: relative; width: 78%; overflow: visible; transform-style: preserve-3d; transition: transform .8s var(--ease-out); }
-.quill__pen { transform-box: view-box; transform-origin: 457px 575px; opacity: 0; transform: translate(60px, -70px) rotate(10deg); transition: opacity 1s var(--ease), transform 1.4s var(--ease-out); }
-.is-ready .quill__pen { opacity: 1; transform: none; animation: write 1.4s var(--ease) 1.25s, sway 7s ease-in-out 2.8s infinite; }
+.quill { position: relative; width: 88%; transform-style: preserve-3d; transition: transform .8s var(--ease-out); filter: drop-shadow(0 30px 40px rgba(0, 0, 0, .55)); }
+.quill__pen { position: relative; transform-origin: 30.4% 97%; opacity: 0; transform: translate(60px, -70px) rotate(10deg); transition: opacity 1s var(--ease), transform 1.4s var(--ease-out); }
+.is-ready .quill__pen { opacity: 1; transform: none; animation: write 1.5s var(--ease) 1.25s, sway 7s ease-in-out 2.9s infinite; }
 @keyframes write { /* tiny nudges as the nib writes */
-  0% { transform: none; } 25% { transform: translate(-3px, 2px) rotate(-1.5deg); } 50% { transform: translate(2px, 3px) rotate(1deg); }
-  75% { transform: translate(4px, 0) rotate(1.5deg); } 100% { transform: none; }
+  0% { transform: none; } 25% { transform: translate(4px, 2px) rotate(-1.2deg); } 50% { transform: translate(10px, -2px) rotate(.8deg); }
+  75% { transform: translate(6px, 1px) rotate(1.2deg); } 100% { transform: none; }
 }
-@keyframes sway { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(-2.2deg) translateY(-3px); } }
-.quill__sheen { transform-box: view-box; animation: sheen 5.5s var(--ease) 2.6s infinite; }
-@keyframes sheen { 0% { transform: rotate(25deg) translateX(-160px); } 45%, 100% { transform: rotate(25deg) translateX(420px); } }
-.quill .ink-line { stroke-dasharray: 1; stroke-dashoffset: 1; }
-.is-ready .quill .ink-line { transition: stroke-dashoffset 1.5s var(--ease) 1.25s; stroke-dashoffset: 0; }
-.quill__drop { opacity: 0; transform-box: fill-box; transform-origin: center; }
-.is-ready .quill__drop { animation: drop 3.2s ease-in 3s infinite; }
+@keyframes sway { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(-2deg) translateY(-3px); } }
+.quill__sheen { /* light sweep clipped to the feather's own shape */
+  position: absolute; inset: 0; pointer-events: none;
+  -webkit-mask: url(assets/mark-pen.webp) center / 100% 100% no-repeat; mask: url(assets/mark-pen.webp) center / 100% 100% no-repeat;
+  background: linear-gradient(115deg, transparent 40%, rgba(255, 255, 255, .55) 50%, transparent 60%) no-repeat;
+  background-size: 300% 100%; background-position: 120% 0; mix-blend-mode: screen;
+}
+.is-ready .quill__sheen { animation: sheen 5.5s var(--ease) 2.8s infinite; }
+@keyframes sheen { 0% { background-position: 120% 0; } 45%, 100% { background-position: -20% 0; } }
+.quill .mark-anim__ink { transition: none; }
+.is-ready .quill .mark-anim__ink { animation: inkWipe 1.6s var(--ease) 1.25s forwards; }
+.quill__drop { position: absolute; left: 30.4%; top: 97%; width: 6px; height: 6px; margin: -3px 0 0 -3px; border-radius: 50%; background: var(--gold-hi); box-shadow: 0 0 10px rgba(236, 210, 154, .8); opacity: 0; }
+.is-ready .quill__drop { animation: drop 3.2s ease-in 3.2s infinite; }
 @keyframes drop { 0% { opacity: 0; transform: scale(.2); } 10% { opacity: 1; transform: scale(1); } 40% { opacity: 1; transform: translateY(6px) scale(.9); } 55%, 100% { opacity: 0; transform: translateY(14px) scale(.3); } }
 
-.hero__wordmark { position: absolute; bottom: 2%; left: 0; right: 0; text-align: center; display: flex; flex-direction: column; gap: 8px; opacity: 0; transform: translateY(12px); transition: opacity 1s var(--ease) 2.3s, transform 1s var(--ease-out) 2.3s; }
+.hero__wordmark { position: relative; margin-top: 14px; text-align: center; display: flex; flex-direction: column; gap: 8px; opacity: 0; transform: translateY(12px); transition: opacity 1s var(--ease) 2.3s, transform 1s var(--ease-out) 2.3s; }
 .is-ready .hero__wordmark { opacity: 1; transform: none; }
 .wm-main { font: 700 clamp(22px, 2.6vw, 34px)/1 var(--serif); letter-spacing: .08em; }
 .wm-sub { font: 500 clamp(11px, 1vw, 14px)/1 var(--serif); letter-spacing: .6em; color: var(--gold); padding-left: .6em; }
@@ -437,7 +453,7 @@ p { margin: 0; }
 /* ---------- Footer ---------- */
 .footer { padding: 72px 0 110px; border-top: 1px solid var(--line); }
 .footer__grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.3fr; gap: 40px; }
-.footer__brand img { width: 54px; margin-bottom: 14px; }
+.footer__brand img { width: 64px; margin-bottom: 14px; }
 .footer__name { font: 700 20px var(--serif); letter-spacing: .06em; }
 .footer__name span { display: block; font-size: 11px; letter-spacing: .5em; color: var(--gold); margin-top: 4px; font-weight: 500; }
 .footer__tag { margin-top: 12px; color: var(--muted); font-size: 14px; }

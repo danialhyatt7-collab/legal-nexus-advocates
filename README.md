@@ -7,7 +7,7 @@ Plain HTML, CSS and JavaScript: no build tools or framework needed to host it.
 - `index.html`: the page (generated, see below)
 - `styles.css`: all styling and animations
 - `script.js`: interactions (preloader, scroll reveals, counters, cursor, magnetic buttons, hero particles, WhatsApp form)
-- `assets/`: the redrawn vector logo (`logo.svg`, `logo-mark.svg`, `favicon.svg`) and the original `logo-full.jpg`
+- `assets/`: the logo with its background removed. `mark-pen.webp` and `mark-ink.webp` are the two animated layers; `logo-full.png` is the full logo; `mark-160.png` is used in the header and footer; `favicon.png` is the tab icon. The earlier vector redraw (`logo.svg`, `logo-mark.svg`) is kept as a backup.
 - `src/`: the HTML template, the logo vector parts and the build script
 
 ## Before going live, edit these
